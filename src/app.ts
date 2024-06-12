@@ -8,9 +8,11 @@ import { Request, Response } from "express";
 import cors from "cors";
 import session from "express-session";
 import passport from "./configs/passport.config";
+// import { app } from "./socket/socket";
 dotenv.config();
 
 const app = express();
+
 app.use(cors({ credentials: true, origin: "http://localhost:3000" }));
 app.use(compression());
 app.use(express.json());

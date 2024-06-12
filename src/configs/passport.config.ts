@@ -19,7 +19,6 @@ passport.use(
           return done(null, false, { message: "This account not exist" });
         } else {
           const compare = await bcrypt.compare(password, foundUser?.password);
-          console.log(foundUser, compare);
           if (compare) {
             return done(null, foundUser);
           } else {
@@ -34,7 +33,6 @@ passport.use(
 );
 
 passport.serializeUser((user: any, done: any) => {
-  console.log(user, user.id, "user inside serialize");
   done(null, user.id);
 });
 passport.deserializeUser((id: string, done: any) => {

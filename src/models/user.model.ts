@@ -1,9 +1,22 @@
-import mongoose, { model } from "mongoose";
+import mongoose, { Schema, model, Document } from "mongoose";
 
 const DOCUMENT_NAME: string = "User";
 const COLLECTION_NAME: string = "Users";
 
-// Declare the Schema of the Mongo model
+interface IThirdPartyProvider extends Document {
+  provider_name: String;
+  provider_id: String;
+  provider_data: {};
+}
+
+interface IUser extends Document {
+  username: string;
+  email: String;
+  password: String;
+  roles: Array<String>;
+  third_party_auth: Array<IThirdPartyProvider>;
+}
+
 const thirdPartyProviderSchema = new mongoose.Schema({
   provider_name: {
     type: String,
@@ -18,7 +31,7 @@ const thirdPartyProviderSchema = new mongoose.Schema({
     default: null,
   },
 });
-const userSchema = new mongoose.Schema(
+const userSchema: Schema<IUser> = new mongoose.Schema(
   {
     username: {
       type: String,

@@ -8,7 +8,7 @@ import uploadDisk from "../../configs/multer.config";
 import { placeController } from "../../controllers/place.controller";
 
 const router = Router();
-// router.use(authentication);
+router.use(authentication);
 router.post(
   "/new",
   uploadDisk.array("place_images"),

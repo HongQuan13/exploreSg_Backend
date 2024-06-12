@@ -56,7 +56,6 @@ export const logOut = asyncHandler(
 
 export const authentication = asyncHandler(
   async (req: Request, res: Response, next: NextFunction) => {
-    console.log(req.user);
     if (req.isAuthenticated()) return next();
     return res.status(401).json({
       authentication: "false",
